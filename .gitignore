@@ -29,7 +29,7 @@ override.tf.json
 terraform.rc
 plan.out
 
-# Infracost
+# Ignore Infracost files
 .infracost
 
 # Anotações
