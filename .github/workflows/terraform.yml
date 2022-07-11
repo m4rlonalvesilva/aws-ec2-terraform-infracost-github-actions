@@ -36,7 +36,7 @@ jobs:
       with:
         terraform_wrapper: false # This is recommended so the `terraform show` command outputs valid JSON
     
-    - name: Configure AWS credentials from Test account
+    - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
         role-to-assume: ${{ secrets.RoleArn }}
@@ -46,7 +46,6 @@ jobs:
     - name: Terraform Init
       run: terraform init
       working-directory: ${{ env.working-directory }}
-
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
@@ -61,6 +60,10 @@ jobs:
       uses: infracost/actions/setup@v1
       with:
         api-key: ${{ secrets.INFRACOST_API_KEY }}
+
+    # Configure currency for BRL
+    - name: Change currency
+      run: infracost configure set currency BRL
     
     - name: Generate Infracost JSON
       run: infracost breakdown --path plan.json --format json --out-file /tmp/infracost.json
@@ -71,4 +74,3 @@ jobs:
       with:
         path: /tmp/infracost.json
         behavior: update # Create a single comment and update it. The "quietest" option.
-        
