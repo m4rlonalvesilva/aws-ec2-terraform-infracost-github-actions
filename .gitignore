@@ -2,7 +2,7 @@
 **/.terraform/*
 
 # Terraform lockfile
-.terraform.lock.hcl
+*.terraform.lock.hcl
 
 # .tfstate files
 *.tfstate
@@ -33,7 +33,7 @@ plan.out
 .infracost
 
 # Private-key
-/private-key
+/private-key/*
 
 # Anotações
 COMANDOS.md
