@@ -36,7 +36,7 @@ jobs:
       with:
         terraform_wrapper: false # This is recommended so the `terraform show` command outputs valid JSON
     
-    - name: Configure AWS credentials
+    - name: Configurar as Credenciais da AWS
       uses: aws-actions/configure-aws-credentials@v1
       with:
         role-to-assume: ${{ secrets.RoleArn }}
@@ -52,7 +52,7 @@ jobs:
       run: terraform plan -out tfplan.binary
       working-directory: ${{ env.working-directory }}
       
-    - name: Terraform show
+    - name: Terraform Show
       run: terraform show -json tfplan.binary > plan.json
       working-directory: ${{ env.working-directory }}
       
@@ -61,11 +61,10 @@ jobs:
       with:
         api-key: ${{ secrets.INFRACOST_API_KEY }}
 
-    # Configure currency for BRL
-    - name: Change currency
+    - name: Configurar moeda
       run: infracost configure set currency BRL
     
-    - name: Generate Infracost JSON
+    - name: Gerar o JSON do Infracost
       run: infracost breakdown --path plan.json --format json --out-file /tmp/infracost.json
       working-directory: ${{ env.working-directory }}
     
