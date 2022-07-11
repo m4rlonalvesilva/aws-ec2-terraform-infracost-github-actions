@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     env:
-      working-directory: infracost
+      working-directory: ./
     
     # These permissions are needed to interact with GitHub's OIDC Token endpoint.
     permissions:
