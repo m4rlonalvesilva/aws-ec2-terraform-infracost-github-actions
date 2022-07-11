@@ -42,3 +42,4 @@ infracost/privatekey/*
 infracost/terraform_modules/*
 infracost/terraform.lock.hcl
 infracost/plan.out
+infracost/oic-provider.tf
