@@ -49,12 +49,7 @@ jobs:
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      run: terraform plan -out tfplan.binary
-      working-directory: ${{ env.working-directory }}
-
-    # Configure currency for BRL
-    - name: Change currency
-      run: infracost configure set currency BRL
+      run: terraform plan -out tfplan.binary && infracost configure set currency BRL
       working-directory: ${{ env.working-directory }}
       
     - name: Terraform show
