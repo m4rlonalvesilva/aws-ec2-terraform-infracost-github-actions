@@ -14,24 +14,20 @@ jobs:
     env:
       working-directory: infracost
     
-    # These permissions are needed to interact with GitHub's OIDC Token endpoint.
-    permissions:
+    permissions: # These permissions are needed to interact with GitHub's OIDC Token endpoint.
       id-token: write
       contents: write
       pull-requests: write
 
-    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
-    defaults:
+    defaults: # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
       run:
         shell: bash
 
     steps:
-    # Checkout the repository to the GitHub Actions runner
-    - name: Checkout
+    - name: Checkout # Checkout the repository to the GitHub Actions runner
       uses: actions/checkout@v2
 
-    # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
-    - name: Setup Terraform
+    - name: Setup Terraform # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
       uses: hashicorp/setup-terraform@v1
       with:
         terraform_wrapper: false # This is recommended so the `terraform show` command outputs valid JSON
