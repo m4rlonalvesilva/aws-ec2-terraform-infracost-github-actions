@@ -1,9 +1,5 @@
 name: 'Terraform Apply'
-on:
-  push:
-    branches:
-    - main
-  pull_request:
+on: workflow_dispatch
 
 jobs:
   terraform:
@@ -28,6 +24,8 @@ jobs:
 
     - name: Terraform Init
       run: terraform init
+      working-directory: ${{ env.working-directory }}
 
     - name: Terraform Apply
       run: terraform apply -auto-approve
+      working-directory: ${{ env.working-directory }}
