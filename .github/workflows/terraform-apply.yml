@@ -1,7 +1,6 @@
 name: 'Terraform Apply'
 on: workflow_dispatch
 
-
 jobs:
   terraform:
     name: 'Terraform'
@@ -23,10 +22,14 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: ${{ secrets.RoleArn }}
+        aws-region: us-east-1
+
     - name: Terraform Init
       run: terraform init
-      working-directory: ${{ env.working-directory }}
 
     - name: Terraform Apply
       run: terraform apply -auto-approve
-      working-directory: ${{ env.working-directory }}
