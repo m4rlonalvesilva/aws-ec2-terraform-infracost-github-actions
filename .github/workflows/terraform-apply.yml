@@ -22,6 +22,12 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+      
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: ${{ secrets.RoleArn }}
+        aws-region: us-east-1
 
     - name: Terraform Init
       run: terraform init
