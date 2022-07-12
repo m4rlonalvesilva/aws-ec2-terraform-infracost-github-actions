@@ -1,4 +1,4 @@
-name: 'Terraform'
+name: 'Terraform Plan'
 
 on:
   push:
@@ -45,6 +45,10 @@ jobs:
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       run: terraform init
+      working-directory: ${{ env.working-directory }}
+
+    - name: Terraform Validate
+      run: terraform validate
       working-directory: ${{ env.working-directory }}
 
     # Generates an execution plan for Terraform
