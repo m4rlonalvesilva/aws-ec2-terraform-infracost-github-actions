@@ -1,10 +1,5 @@
 name: 'Terraform Apply'
-
-on: 
-  workflow_dispatch: 
-    branches:
-    - main
-  pull_request:
+on: workflow_dispatch
 
 jobs:
   terraform:
